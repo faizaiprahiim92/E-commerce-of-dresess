@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Login and Order Form</h2>
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="email">Gmail</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Gmail">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+            <label for="products">Products</label>
+            <select id="products" name="products">
+                <option value="">Select product</option>
+                <option value="Cloths">Cloths</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Trouser">Trouser</option>
+                <option value="Khamis">Khamis</option>
+                <option value="Other Clothes">Other Clothes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="size">Size</label>
+            <select id="size" name="size">
+                <option value="">Select size</option>
+                <option value="XX">XX</option>
+                <option value="XL">XL</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="Large">Large</option>
+                <option value="Small">Small</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="message">Messenger</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+        </div>
+        <button type="button" class="submit-btn" onclick="sendWhatsAppMessage()">Submit</button>
+    </form>
+</div>
+
+<script>
+    function sendWhatsAppMessage() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const gender = document.getElementById('gender').value;
+        const phone = document.getElementById('phone').value.trim();
+        const products = document.getElementById('products').value;
+        const size = document.getElementById('size').value;
+        const message = document.getElementById('message').value.trim();
+
+        // Validation
+        if (!name || !email || !gender || !phone || !products || !size || !message) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        // WhatsApp link
+        const whatsappNumber = "252684827981"; // Replace with your WhatsApp number
+        const whatsappMessage = `Order Details:\n\nName: ${name}\nGmail: ${email}\nGender: ${gender}\nPhone: ${phone}\nProduct: ${products}\nSize: ${size}\nMessage: ${message}`;
+        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        // Redirect to WhatsApp
+        window.location.href = whatsappLink;
+    }
+</script>
+
+</body>
+</html>
